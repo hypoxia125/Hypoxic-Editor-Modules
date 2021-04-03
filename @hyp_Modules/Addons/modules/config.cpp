@@ -6,7 +6,8 @@ class CfgPatches
 			"hyp_moduleAutoRefuel",
 			"hyp_moduleAutoRepair",
 			"hyp_moduleAutoRearm",
-			"hyp_moduleFuelConsumption"
+			"hyp_moduleFuelConsumption",
+			"hyp_moduleVehicleJammer"
 		};
 		requiredVersion = 1.0;
 		requiredAddons[] = {"A3_Modules_F"};
@@ -37,6 +38,7 @@ class CfgFunctions
 			class moduleAutoRepair {};
 			class moduleAutoRearm {};
 			class moduleFuelConsumption {};
+			class moduleVehicleJammer {};
 		};
 	};
 };
@@ -67,4 +69,5 @@ class CfgVehicles
 	#include "\modules\config\module_autoRepair.cpp"
 	#include "\modules\config\module_autoRearm.cpp"
 	#include "\modules\config\module_fuelConsumption.cpp"
+	#include "\modules\config\module_vehicleJammer.cpp"
 };

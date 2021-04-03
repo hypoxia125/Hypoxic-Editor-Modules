@@ -1,16 +1,16 @@
-class hyp_moduleFuelConsumption: Module_F
+class hyp_moduleVehicleJammer: Module_F
 {
     // Standard object definitions
     scope = 2; // Editor visibility; 2 will show it in the menu, 1 will hide it.
-    displayName = "Vehicle Fuel Consumption"; // Name displayed in the menu
-    icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\refuel_ca.paa"; // Map icon. Delete this entry to use the default icon
-    portrait = "\A3\ui_f\data\igui\cfg\simpleTasks\types\refuel_ca.paa";
+    displayName = "Vehicle IED/Mine Jammer"; // Name displayed in the menu
+    icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\danger_ca.paa"; // Map icon. Delete this entry to use the default icon
+    portrait = "\A3\ui_f\data\igui\cfg\simpleTasks\types\danger_ca.paa";
     category = "hyp_vehicleModifiers";
     canSetArea = 0;
     canSetAreaShape = 0;
 
     // Name of function triggered once conditions are met
-    function = "hyp_fnc_moduleFuelConsumption";
+    function = "hyp_fnc_moduleVehicleJammer";
     // Execution priority, modules with lower number are executed first. 0 is used when the attribute is undefined
     functionPriority = 0;
     // 0 for server only execution, 1 for global execution, 2 for persistent global execution
@@ -33,19 +33,35 @@ class hyp_moduleFuelConsumption: Module_F
         };
 
         // Module specific arguments
-        class Time: Edit
+        class Range: Edit
         {
             // Unique property, use "<moduleClass>_<attributeClass>" format to make sure the name is unique in the world
-            property = "hyp_moduleConsume_Time";
-            displayName = "Max Consume Time"; // Argument label
-            tooltip = "Time (s) from Full to Empty at Max Speed"; // Tooltip description
+            property = "hyp_moduleJamRange";
+            displayName = "Jamming Range (3D)"; // Argument label
+            tooltip = "Distance (m) from mines before activation"; // Tooltip description
             typeName = "NUMBER"; // Value type, can be "NUMBER", "STRING" or "BOOL"
-            defaultValue = 600; // Default attribute value. WARNING: This is an expression, and its returned value will be used (50 in this case)
+            defaultValue = 50; // Default attribute value. WARNING: This is an expression, and its returned value will be used (50 in this case)
+        };
+
+        class addlClasses: Edit
+        {
+            property = "hyp_moduleJamAddlClasses";
+            displayName = "Additional Classes";
+            tooltip = "Add more classes of explosives here (CUP and Stuff)";
+            defaultValue = [];
+        };
+
+        class Explode: Checkbox
+        {
+            property = "hyp_moduleJamExplode";
+            displayName = "Explode?";
+            tooltip = "Explode IEDs/Mines when in range";
+            defaultValue = false;
         };
 
         class Persistent: Checkbox
         {
-            property = "hyp_moduleFuelConsumption_Persistent";
+            property = "hyp_moduleJam_Persistent";
             displayName = "Apply Universal Classes";
             tooltip = "Applies module to all synced vehicle classes.";
             defaultValue = false;
@@ -60,7 +76,7 @@ class hyp_moduleFuelConsumption: Module_F
     // Module description. Must inherit from base class, otherwise pre-defined entities won't be available
     class ModuleDescription: ModuleDescription
     {
-        description = "Sync vehicles to allow for fuel consumption."; // Short description, will be formatted as structured text
+        description = "Sync vehicles to allow for IED/Mine Jamming."; // Short description, will be formatted as structured text
         sync[] = {
             "AnyVehicle"
         };

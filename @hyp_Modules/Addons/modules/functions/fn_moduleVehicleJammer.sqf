@@ -5,8 +5,6 @@ private _isActivated = param [2, true, [true]];
 
 _moduleLogic setVariable ["module_jammer_units", _syncedEntities];
 
-JAM_DEBUG = false;
-
 // FUNCTIONS
 
 HYP_run_jam = {
@@ -63,8 +61,6 @@ if (_moduleLogic getVariable ["persistent", false]) then {
 			_units = _units select {alive _x};
 			_moduleLogic setVariable ["module_jammer_units", _units];
 			sleep 2;
-			if JAM_DEBUG then { systemChat format ["Current Units = %1", _units]};
-			if JAM_DEBUG then { systemChat format ["Current Classes = %1", _classes]};
 		};
 	};
 };

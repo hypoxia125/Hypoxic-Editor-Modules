@@ -2,12 +2,11 @@
 private _modulelogic = param [0, objNull, [objNull]];
 private _syncedentities = param [1, [], [[]]];
 private _isActivated = param [2, true, [true]];
-
-_modulelogic setVariable ["module_units", _syncedEntities];
+_moduleLogic setVariable ["module_units", _syncedentities];
 
 // FUNCTIONS
 
-HYP_run_repair = {
+HYP_run_heal = {
 
 	params ["_vehicle", "_time"];
 
@@ -35,12 +34,12 @@ HYP_run_repair = {
 	true
 };
 
-// CODE
+// ------------------CODE-------------------- //
 
 if !(_isActivated) exitWith {};
 if !(isServer) exitWith {};
 
-// PERSISTENT ADDING OF VEHICLES
+// PERSISTENT ADDING OF UNITS
 
 if (_modulelogic getVariable ["persistent", false]) then {
 
@@ -66,7 +65,7 @@ if (_modulelogic getVariable ["persistent", false]) then {
 	};
 };
 
-// REPARING LOOP
+// HEALING LOOP
 
 [_modulelogic] spawn {
 
@@ -81,7 +80,7 @@ if (_modulelogic getVariable ["persistent", false]) then {
 	
 			_units = _units select {alive _x};
 			{
-				[_x, _time] remoteExec ["HYP_run_repair", _x];
+				[_x, _time] remoteExec ["HYP_run_heal", _x];
 			} forEach _units;
 		};
 		sleep 1;

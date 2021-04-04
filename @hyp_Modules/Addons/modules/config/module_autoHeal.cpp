@@ -1,16 +1,16 @@
-class hyp_moduleStealthReveal: Module_F
+class hyp_moduleAutoHeal: Module_F
 {
     // Standard object definitions
     scope = 2; // Editor visibility; 2 will show it in the menu, 1 will hide it.
-    displayName = "Infantry Stealth"; // Name displayed in the menu
-    icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\search_ca.paa"; // Map icon. Delete this entry to use the default icon
-    portrait = "\A3\ui_f\data\igui\cfg\simpleTasks\types\search_ca.paa";
+    displayName = "Infantry Auto Heal"; // Name displayed in the menu
+    icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\heal_ca.paa"; // Map icon. Delete this entry to use the default icon
+    portrait = "\A3\ui_f\data\igui\cfg\simpleTasks\types\heal_ca.paa";
     category = "hyp_infantryModifiers";
     canSetArea = 0;
     canSetAreaShape = 0;
 
     // Name of function triggered once conditions are met
-    function = "hyp_fnc_moduleStealthReveal";
+    function = "hyp_fnc_moduleAutoHeal";
     // Execution priority, modules with lower number are executed first. 0 is used when the attribute is undefined
     functionPriority = 0;
     // 0 for server only execution, 1 for global execution, 2 for persistent global execution
@@ -33,9 +33,19 @@ class hyp_moduleStealthReveal: Module_F
         };
 
         // Module specific arguments
+        class Time: Edit
+        {
+            // Unique property, use "<moduleClass>_<attributeClass>" format to make sure the name is unique in the world
+            property = "hyp_moduleHeal_Time";
+            displayName = "Time Until Healed"; // Argument label
+            tooltip = "Seconds"; // Tooltip description
+            typeName = "NUMBER"; // Value type, can be "NUMBER", "STRING" or "BOOL"
+            defaultValue = 60; // Default attribute value. WARNING: This is an expression, and its returned value will be used (50 in this case)
+        };
+
         class Persistent: Checkbox
         {
-            property = "hyp_moduleStealthReveal_Persistent";
+            property = "hyp_moduleHeal_Persistent";
             displayName = "Apply Universal Classes";
             tooltip = "Applies module to all synced infantry classes.";
             defaultValue = false;
@@ -50,9 +60,9 @@ class hyp_moduleStealthReveal: Module_F
     // Module description. Must inherit from base class, otherwise pre-defined entities won't be available
     class ModuleDescription: ModuleDescription
     {
-        description = "Sync infantry to have them be invisible to the naked eye, requiring thermal vision"; // Short description, will be formatted as structured text
+        description = "Sync infantry to allow for automatic healing."; // Short description, will be formatted as structured text
         sync[] = {
-            "Anything"
+            "AnyBrain"
         };
     };
 };

@@ -8,7 +8,8 @@ class CfgPatches
 			"hyp_moduleAutoRearm",
 			"hyp_moduleFuelConsumption",
 			"hyp_moduleVehicleJammer",
-			"hyp_moduleStealthReveal"
+			"hyp_moduleStealthReveal",
+			"hyp_moduleAutoHeal"
 		};
 		requiredVersion = 1.0;
 		requiredAddons[] = {"A3_Modules_F"};
@@ -41,6 +42,7 @@ class CfgFunctions
 			class moduleFuelConsumption {};
 			class moduleVehicleJammer {};
 			class moduleStealthReveal {};
+			class moduleAutoHeal {};
 		};
 	};
 };
@@ -73,4 +75,5 @@ class CfgVehicles
 	#include "\modules\config\module_fuelConsumption.cpp"
 	#include "\modules\config\module_vehicleJammer.cpp"
 	#include "\modules\config\module_StealthReveal.cpp"
+	#include "\modules\config\module_AutoHeal.cpp"
 };

@@ -5,8 +5,6 @@ private _isActivated = param [2, true, [true]];
 
 _modulelogic setVariable ["module_units", _syncedEntities];
 
-REARM_DEBUG = false;
-
 // FUNCTIONS
 
 HYP_run_rearm = {
@@ -77,8 +75,6 @@ if (_modulelogic getVariable ["persistent", false]) then {
 			_units = _units select {alive _x};
 			_modulelogic setVariable ["module_units", _units];
 			sleep 2;
-			if REARM_DEBUG then { systemChat format ["Current Units = %1", _units]};
-			if REARM_DEBUG then { systemChat format ["Current Classes = %1", _classes]};
 		};
 	};
 };
@@ -102,7 +98,6 @@ if (_modulelogic getVariable ["persistent", false]) then {
 			} forEach _units;
 		};
 		sleep _time;
-		if REARM_DEBUG then { systemChat format ["Units Fueled = %1", _units]};
 	};
 };
 

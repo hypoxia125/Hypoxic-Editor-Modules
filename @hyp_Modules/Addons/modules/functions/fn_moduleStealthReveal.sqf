@@ -52,9 +52,9 @@ HYP_fnc_stealthEventHandler = {
 	true;
 };
 
-
-
 // CODE
+
+if !(_isActivated) exitWith {};
 
 // PERSISTENT ADDING OF CLASSES AND STEALTH LOOP
 

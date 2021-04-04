@@ -5,8 +5,6 @@ private _isActivated = param [2, true, [true]];
 
 _modulelogic setVariable ["module_units", _syncedEntities];
 
-CONSUME_DEBUG = false;
-
 // FUNCTIONS
 
 HYP_run_fuelconsume = {
@@ -54,8 +52,6 @@ if (_modulelogic getVariable ["persistent", false]) then {
 			_units = _units select {alive _x};
 			_modulelogic setVariable ["module_units", _units];
 			sleep 2;
-			if CONSUME_DEBUG then { systemChat format ["Current Units = %1", _units]};
-			if CONSUME_DEBUG then { systemChat format ["Current Classes = %1", _classes]};
 		};
 	};
 };
@@ -79,7 +75,6 @@ if (_modulelogic getVariable ["persistent", false]) then {
 			} forEach _units;
 		};
 		sleep 1;
-		if CONSUME_DEBUG then { systemChat format ["Units Modified = %1", _units]};
 	};
 };
 

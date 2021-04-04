@@ -32,6 +32,8 @@ HYP_run_jam = {
 			_x enableSimulationGlobal true;
 		};
 	} forEach _mines;
+
+	true;
 };
 
 // CODE

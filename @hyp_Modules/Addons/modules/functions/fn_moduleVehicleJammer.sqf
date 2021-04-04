@@ -99,10 +99,12 @@ if (_moduleLogic getVariable ["persistent", false]) then {
 	private _units = _moduleLogic getVariable ["module_jammer_units", []];
 	while {true} do {
 
-		{
-			[_x, _moduleLogic] remoteExec ["HYP_run_jam", _x];
-		} forEach _units;
+		if !(_units isEqualTo []) then {
 
+			{
+				[_x, _moduleLogic] remoteExec ["HYP_run_jam", _x];
+			} forEach _units;
+		};
 		sleep 1;
 	};
 };
